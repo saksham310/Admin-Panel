@@ -34,16 +34,19 @@ public onSubmit(){
   console.log(this.userForm.value)
   const logSub=this.loginService.logUser(email,password).subscribe({
     next:(value)=>{this.loginToken=value.idToken,
+      this.loginService.setToken(this.loginToken);
 this.route.navigateByUrl("dashboard")
     },
     error:(err)=>{console.log(err)}
   })
   this.subscriptions.add(logSub);
-  this.loginService.setToken(this.loginToken);
+ 
+}
+ngOnInit(){
+  this.loginService.autoLogin();
 }
 
-
-private ngOnDestroy(){
+ ngOnDestroy(){
   this.subscriptions.unsubscribe
 }
 
