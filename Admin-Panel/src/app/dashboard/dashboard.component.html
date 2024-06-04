@@ -1,2 +1,27 @@
-<p>dashboard works!</p>
-<button (click)="logout()">Logout</button>
+<div class="container">
+    <div class="sidebar">
+        <div class="top-content">
+            <img class="profile" src="../../assets/images/login.JPG" alt="" />
+            <div class="user-info">
+                <h3>Saksham Sharma</h3>
+                <small>Admin</small>
+            </div>
+        </div>
+        <div class="navigate-btn">
+            <strong [routerLink]="['panel']" routerLinkActive="active"><span
+                    class="pi pi-globe"></span> Dashboard</strong>
+            <strong [routerLink]="['products']" routerLinkActive="active"><span
+                    class="pi pi-slack"></span>&nbsp;Product</strong>
+            <strong [routerLink]="['category']" routerLinkActive="active"><span
+                    class="pi pi-bullseye"></span>&nbsp;Category</strong>
+            <strong [routerLink]="['order']" routerLinkActive="active"><span
+                    class="pi pi-wallet"></span>&nbsp;Order</strong>
+        </div>
+        <div class="logout">
+            <strong (click)="logout()"><span class="pi pi-sign-out"></span>&nbsp;Logout</strong>
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
