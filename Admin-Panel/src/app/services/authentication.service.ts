@@ -31,7 +31,7 @@ export class AuthenticationService {
 
   public autoLogin(){
     const token=localStorage.getItem(this.key)
-    console.log('token',token);
+   
     if(token){
       this.isLogged=true;
       if (this.router.url === '/') {

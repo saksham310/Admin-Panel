@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="image-container">
+        <img src="../../assets/images/Mobile-login.jpg" alt="">
+    </div>
     <div class="form-container">
         <h1>Log In</h1>
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -19,7 +22,5 @@
             <button class="btn" [disabled]="!userForm.valid">Login</button>
         </form>
     </div>
-    <div class="image-container">
-        <img src="../../assets/images/login.jpg" alt="">
-    </div>
+
 </div>

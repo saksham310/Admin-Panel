@@ -1,0 +1,40 @@
+{
+    "products": [{
+      "product1": {
+        "Category": "Electronics",
+        "Description": "Smartphone with 128GB storage",
+        "Name": "Smartphone XYZ",
+        "Price": 699.99
+      },
+      "product2": {
+        "Category": "Home Appliances",
+        "Description": "Air Conditioner with energy-saving mode",
+        "Name": "AC Model 123",
+        "Price": 499.99
+      },
+      "product3": {
+        "Category": "Books",
+        "Description": "A great book about TypeScript",
+        "Name": "Learning TypeScript",
+        "Price": 29.99
+      }
+    }],
+    "orders": [{
+      "order1": {
+        "id": 1,
+        "customer": "John Doe",
+        "number": 123456
+      },
+      "order2": {
+        "id": 2,
+        "customer": "Jane Smith",
+        "number": 654321
+      },
+      "order3": {
+        "id": 3,
+        "customer": "Alice Johnson",
+        "number": 111222
+      }
+    }]
+  }
+  
