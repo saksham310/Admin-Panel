@@ -6,6 +6,7 @@ import { PanelComponent } from './dashboard-components/panel/panel.component';
 import { ProductsComponent } from './dashboard-components/products/products.component';
 import { CategoryComponent } from './dashboard-components/category/category.component';
 import { OrdersComponent } from './dashboard-components/orders/orders.component';
+import { ProductFormComponent } from './form/product-form/product-form.component';
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
         {path:'panel',component:PanelComponent,title:"Dashboard"} , {path:'products',component:ProductsComponent,title:"Dashboard"},
         {path:'category',component:CategoryComponent,title:"Dashboard"} , {path:'order',component:OrdersComponent,title:"Dashboard"},
     ]
-}
+},
+{path:'form',component:ProductFormComponent,title:"Form"},
 ];

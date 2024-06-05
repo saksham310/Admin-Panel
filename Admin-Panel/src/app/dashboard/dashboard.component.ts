@@ -1,17 +1,38 @@
-import { Component,inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ProductsInterface } from '../interface/products.interface';
+import { CategoryComponent } from '../dashboard-components/category/category.component';
+import { DataService } from '../services/data.service';
+import { Subscribable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  private authService:AuthenticationService=inject(AuthenticationService);
-  logout(){
+  private subscritption:Subscription=new Subscription();
+  public products: ProductsInterface[] = [];
+  public category: CategoryComponent[] = [];
+  private authService: AuthenticationService = inject(AuthenticationService);
+  private dataService: DataService = inject(DataService);
+
+  logout() {
     this.authService.logOut();
   }
-}
+
+  ngOnInit() {
+    const products=this.dataService.getProducts().subscribe((data: ProductsInterface[]) => {
+      this.products = data;
+      console.log(this.products);
+  
+    });
+    this.subscritption.add(products);
+  }
+
+ngOnDestroy(){
+  this.subscritption.unsubscribe();
+}}

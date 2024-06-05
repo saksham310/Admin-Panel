@@ -18,23 +18,6 @@
         "Name": "Learning TypeScript",
         "Price": 29.99
       }
-    }],
-    "orders": [{
-      "order1": {
-        "id": 1,
-        "customer": "John Doe",
-        "number": 123456
-      },
-      "order2": {
-        "id": 2,
-        "customer": "Jane Smith",
-        "number": 654321
-      },
-      "order3": {
-        "id": 3,
-        "customer": "Alice Johnson",
-        "number": 111222
-      }
     }]
   }
   
