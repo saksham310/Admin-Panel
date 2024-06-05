@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable,map } from 'rxjs';
 import { ProductsInterface } from '../interface/products.interface';
@@ -7,6 +7,7 @@ import { ProductsInterface } from '../interface/products.interface';
   providedIn: 'root'
 })
 export class DataService {
+  private key="token";
 private http:HttpClient=inject(HttpClient);
 private BASE_URL="https://mgmt-sys-default-rtdb.firebaseio.com/";
 private testURL="http://localhost:3000/products"
@@ -27,5 +28,9 @@ public getProducts(){
 public addProduct(product:ProductsInterface){
   console.log(`${this.BASE_URL}`+"products.json",product);
   return this.http.post<{name:string}>(`${this.BASE_URL}`+"products.json",product);
+}
+
+public getToken(){  
+  return localStorage.getItem(this.key);
 }
 }

@@ -25,6 +25,7 @@ export class AuthenticationService {
     this.isLogged=true;
   }
 
+ 
   public isAuthenticated(){
     return this.isLogged;
   }
