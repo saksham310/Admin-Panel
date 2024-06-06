@@ -1,11 +1,12 @@
 .container {
-  width: 500px;
+  width: 650px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 5rem;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  /* border: 0.1px solid black; */
+  box-shadow: rgb(18, 114, 187) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 1) 0px 2px 6px 2px;
 }
 form {
   display: flex;
@@ -34,13 +35,20 @@ label {
   margin-bottom: 0.3rem;
 }
 input {
-  width: 100%;
+  width: 230px;
   height: 38px;
   outline: none;
   padding: 0.3rem;
 }
+#email {
+  width: 100%;
+}
+small {
+  display: block;
+  margin-top: 0.2rem;
+}
 select {
-  width: 140px;
+  width: 230px;
   height: 38px;
 }
 button {
@@ -49,4 +57,10 @@ button {
   padding: 0.8rem;
   background-color: rgba(0, 145, 242, 0.832);
   color: white;
+}
+.error {
+  border: 1px solid red;
+}
+.required {
+  color: red;
 }

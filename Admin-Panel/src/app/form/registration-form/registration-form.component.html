@@ -1,43 +1,76 @@
 <div class="container">
-    <form formGroupName="registrationForm">
+    <form [formGroup]="registrationForm">
         <h2 class="form-title">Registration Form</h2>
         <div class="content">
             <div class="group">
                 <div class="input-box">
-                    <label for="fName">First Name</label>
-                    <input type="text" placeholder="First name" id="fName" formControlName="fName">
+                    <label for="fName">First Name <span class="required">*</span></label>
+                    <input type="text" placeholder="First name" id="fName" formControlName="fName"
+                        [class.error]="form.fName.invalid && form.fName.touched">
+                    <small class="required" *ngIf="form.fName.errors?.['required']&& form.fName.touched">This is a
+                        required field</small>
+                    <small class="required" *ngIf="form.fName.errors?.['pattern']">Name cannot contain number</small>
+
                 </div>
+
                 <div class="input-box">
-                    <label for="lName">Last Name</label>
-                    <input type="text" placeholder="Last name" id="lName" formControlName="lName">
+                    <label for="lName">Last Name<span class="required">*</span></label>
+                    <input type="text" placeholder="Last name" id="lName" formControlName="lName"
+                        [class.error]="form.lName.invalid && form.lName.touched">
+                    <small class="required" *ngIf="form.lName.errors?.['required']&& form.lName.touched">This field is
+                        required</small>
+                    <small class="required" *ngIf="form.lName.errors?.['pattern']">Name cannot contain number</small>
                 </div>
             </div>
 
             <div class="input-box">
-                <label for="email">Email</label>
-                <input type="email" placeholder="Email" id="email" formControlName="email">
+                <label for="email">Email<span class="required">*</span></label>
+                <input type="email" placeholder="Email" id="email" formControlName="email"
+                    [class.error]="form.email.invalid && form.email.touched">
+                <small class="required" *ngIf="form.email.errors?.['required']&& form.email.touched">This field is
+                    required</small>
+                <small class="required" *ngIf="form.email.errors?.['email']">Please enter a valid
+                    mail (Eg: example&#64;gmail.com)</small>
             </div>
             <div class="group">
                 <div class="input-box">
-                    <label for="phone">Phone</label>
-                    <input type="tel" placeholder="Phone number" id="phone" formControlName="fName">
+                    <label for="phone">Phone<span class="required">*</span></label>
+                    <input type="tel" placeholder="Phone number" id="phone" formControlName="phone"
+                        [class.error]="form.phone.invalid && form.phone.touched">
+                    <small class="required" *ngIf="form.phone.errors?.['required'] && form.phone.touched">This field is
+                        required</small>
+                    <small class="required" *ngIf="form.phone.errors?.['pattern']">Phone must be of 10 digits<br>
+                        (Eg:9XXXXXXXXX)</small>
                 </div>
                 <div class="input-box">
-                    <label for="role">Role</label>
-                    <select name="role" id="role" formControlName="fName">
-                        <option value="Student">Student</option>
-                        <option value="Admin">Admin</option>
+                    <label for="role">Role<span class="required">*</span></label>
+                    <select name="role" id="role" formControlName="role">
+                        <option value="Student" selected>
+                            Student
+                        </option>
+                        <option value="Admin">
+                            Admin
+                        </option>
                     </select>
+
+
                 </div>
             </div>
             <div class="group">
                 <div class="input-box">
-                    <label for="newPass">Create Password</label>
-                    <input type="password" placeholder="New password" id="newPass" formControlName="fName">
+                    <label for="newPass">Create Password<span class="required">*</span></label>
+                    <input type="password" placeholder="New password" id="newPass" formControlName="password">
+                    <small class="required" *ngIf="form.password.errors?.['pattern']">Password must include:<br> 1
+                        digit<br> 1
+                        lowercase<br> 1 uppercase <br> 1 special character.
+                    </small>
                 </div>
                 <div class="input-box">
-                    <label for="cPass">Confirm Password</label>
-                    <input type="text" placeholder="Confirm password" id="cPass" formControlName="fName">
+                    <label for="cPass">Confirm Password<span class="required">*</span></label>
+                    <input type="password" placeholder="Confirm password" id="cPass" formControlName="cpassword">
+                    <small class="required"
+                        *ngIf="form.cpassword.errors?.['mismatch'] && form.cpassword.touched">Password do not
+                        match<br></small>
                 </div>
             </div>
 

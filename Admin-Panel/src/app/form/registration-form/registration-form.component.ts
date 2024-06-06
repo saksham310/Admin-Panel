@@ -1,62 +1,42 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { regexPattern } from '../../validators/form.validators';
-import {
-  AbstractControl,
-  FormControl,
-  ValidationErrors,
-  ValidatorFn,
-} from '@angular/forms';
+import { passwordPattern, phonePattern,namePattern} from '../../validators/form.validators';
+import { MatchPassword } from '../../validators/form.validators';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './registration-form.component.html',
   styleUrl: './registration-form.component.css',
 })
 export class RegistrationFormComponent {
   private _fb: FormBuilder = inject(FormBuilder);
+public options=['Student','Admin']
   registrationForm = this._fb.group(
     {
-      fName: ['', [Validators.required]],
-      lName: ['', [Validators.required]],
+      fName: ['', [Validators.required, Validators.pattern(namePattern)]],
+      lName: ['', [Validators.required, Validators.pattern(namePattern)]],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(regexPattern),
+          Validators.pattern(passwordPattern),
         ],
       ],
       cpassword: ['', [Validators.required,MatchPassword('password', 'cpassword')]],
-      role: ['', [Validators.required]],
+      role: ['Student',[Validators.required]],
+      phone:['',[Validators.required,Validators.pattern(phonePattern)]],
     },
     {
       validators: MatchPassword('password', 'cpassword'),
     }
   );
+  get form(){
+    return this.registrationForm.controls;
+  }
 }
 
-export function MatchPassword(
-  controlName: string,
-  matchingControlName: string
-) {
-  return (formGroup: AbstractControl): ValidationErrors | null => {
-    const control = formGroup.get(controlName);
-    const matchingControl = formGroup.get(matchingControlName);
-
-    if (!control || !matchingControl) {
-      return null;
-    }
-
-    if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({ mismatch: true });
-      return { mismatch: true };
-    }
-
-    matchingControl.setErrors(null);
-    return null;
-  };
-}
