@@ -7,6 +7,7 @@ import { ProductsComponent } from './dashboard-components/products/products.comp
 import { CategoryComponent } from './dashboard-components/category/category.component';
 import { OrdersComponent } from './dashboard-components/orders/orders.component';
 import { ProductFormComponent } from './form/product-form/product-form.component';
+import { RegistrationFormComponent } from './form/registration-form/registration-form.component';
 
 
 export const routes: Routes = [
@@ -18,4 +19,5 @@ export const routes: Routes = [
     ]
 },
 {path:'form',component:ProductFormComponent,title:"Form"},
+{path:"register",component:RegistrationFormComponent,title:"Register"}
 ];

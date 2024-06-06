@@ -3,15 +3,17 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthenticationService } from '../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { PreLoaderComponent } from '../common/pre-loader/pre-loader.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,PreLoaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+isLoading:boolean=false;
 private subscriptions:Subscription=new Subscription();
 public userForm!:FormGroup
 private loginToken:string='';
@@ -28,6 +30,7 @@ public validator(name:string){
   return (this.userForm.get(name)?.invalid && this.userForm.get(name)?.touched)
 }
 public onSubmit(){
+  this.isLoading=true
   const email=this.userForm.get("email")?.value;
   const password=this.userForm.get("password")?.value;
   console.log("Logged in")
@@ -37,7 +40,8 @@ public onSubmit(){
       this.loginService.setToken(this.loginToken);
 this.route.navigateByUrl("dashboard")
     },
-    error:(err)=>{console.log(err)}
+    error:(err)=>{console.log(err),this.isLoading=false},
+    complete:()=>{this.isLoading=false}
   })
   this.subscriptions.add(logSub);
  

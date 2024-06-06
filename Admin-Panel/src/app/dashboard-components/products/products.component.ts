@@ -10,6 +10,7 @@ import { TagModule } from 'primeng/tag';
 import { ProductsInterface } from '../../interface/products.interface';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
+import { PreLoaderComponent } from '../../common/pre-loader/pre-loader.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { Subscription } from 'rxjs';
   imports: [CommonModule,TableModule,ButtonModule,
     MultiSelectModule,TagModule,SliderModule,
     DropdownModule,ProgressBarModule,
-
+    PreLoaderComponent
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -27,10 +28,17 @@ export class ProductsComponent {
   private subscritption:Subscription=new Subscription();
 products:ProductsInterface[]=[];
 private dataService:DataService=inject(DataService); 
-
+isLoading:boolean=true
 ngOnInit(): void {
-  this.dataService.getProducts().subscribe((data:ProductsInterface[])=>{
-    this.products=data;
+  // this.isLoading=true
+  this.dataService.getProducts().subscribe({
+    next:(data:ProductsInterface[])=>{
+      this.products=data;
+      this.isLoading=false
+    },
+    complete:()=>{
+      this.isLoading=false
+    }
   })
 }
 ngOnDestroy(){

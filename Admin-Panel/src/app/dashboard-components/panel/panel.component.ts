@@ -12,5 +12,12 @@ import { OrdersInterface } from '../../interface/orders.interface';
   styleUrls: ['./panel.component.css'],
 })
 export class PanelComponent {
- 
+  products:ProductsInterface[]=[];
+  data:ProductsInterface[][]=[];
+  private dataService:DataService=inject(DataService); 
+  ngOnInit(): void {
+    this.dataService.getProducts().subscribe({
+      next:(data:ProductsInterface[])=>{
+        this.products=data;
+      this.data.push(this.products)}})}
 }

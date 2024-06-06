@@ -1,16 +1,8 @@
+@if(isLoading){
+<app-pre-loader></app-pre-loader>}
 <div class="card">
     <p-table #dt1 [value]="products" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
         [globalFilterFields]="['Name', 'Category', 'Price', 'Status']">
-        <!-- <ng-template pTemplate="caption"> -->
-        <!-- <div class="flex">
-                <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" />
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 'contains')"
-                        placeholder="Search keyword" />
-                </span>
-            </div> -->
-        <!-- </ng-template> -->
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:15rem">
