@@ -1,19 +1,29 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { PreLoaderComponent } from '../common/pre-loader/pre-loader.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,PreLoaderComponent],
+  imports: [ReactiveFormsModule,PreLoaderComponent,InputTextModule,FormsModule,FloatLabelModule,ButtonModule,CheckboxModule,CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  encapsulation:ViewEncapsulation.None
 })
 export class LoginComponent {
 isLoading:boolean=false;
+
+passType="password";
+
 private subscriptions:Subscription=new Subscription();
 public userForm!:FormGroup
 private loginToken:string='';
@@ -51,7 +61,11 @@ ngOnInit(){
 }
 
  ngOnDestroy(){
-  this.subscriptions.unsubscribe
+  this.subscriptions.unsubscribe()
 }
+onTogglePassword(){
+this.passType=this.passType=="password"?"text":"password";
+}
+
 
 }

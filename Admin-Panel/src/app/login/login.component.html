@@ -1,28 +1,53 @@
 @if(isLoading){
-<app-pre-loader></app-pre-loader>}
-<div class="container">
-    <div class="image-container">
-        <img src="../../assets/images/Mobile-login.jpg" alt="">
-    </div>
-    <div class="form-container">
-        <h1>Log In</h1>
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            <div class="field">
-                <label for="email">Email</label>
-                <input type="text" formControlName="email" id="email">
-                @if(validator("email")){
-                <small class="error">*Please Enter a valid Email address</small>
-                }
-            </div>
-            <div class="field">
-                <label for="email">Password</label>
-                <input type="password" formControlName="password" id="password">
-                @if(validator("password")){
-                <small class="error">*This is a required field</small>
-                }
-            </div>
-            <button class="btn" [disabled]="!userForm.valid">Login</button>
-        </form>
-    </div>
+<app-pre-loader></app-pre-loader>}<div class="wrapper">
 
+
+    <div class="container">
+        <div class="left-container">
+            <div class="title">
+                <h2>LOGIN</h2>
+            </div>
+            <div class="form-container">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                    <div class="input-box">
+                        <p-floatLabel>
+                            <input pInputText id="email" type="email" formControlName="email" />
+                            <label for="email">Email</label>
+                        </p-floatLabel>
+                        @if(validator("email")){
+                        <small class="error" id="email-help">
+                            *This is a required field.
+                        </small>}
+                    </div>
+
+                    <div class="input-box">
+                        <p-floatLabel>
+                            <input pInputText id="password" [type]="passType" formControlName="password" />
+                            <label for="password">Password</label>
+                        </p-floatLabel>
+                        @if(validator("password")){
+                        <small class="error" id="password-help">
+                            *This is a required field.
+                        </small>}
+                        <!-- <div class="showPass">
+                            <p-checkbox formControlName="city" value="New York" inputId="ny" />
+                            <label for="ny">New York</label>
+                        </div> -->
+                    </div>
+                    <div class="showPass">
+                        <p-checkbox value="Show pass" inputId="pass" (onChange)="onTogglePassword()" />
+                        <label for="pass">Show Password</label>
+                    </div>
+
+                    <div class="button"> <p-button label="login" type="submit" /></div>
+
+                </form>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="image-container">
+                <img src="../../assets/images/Mobile-login.jpg" alt="">
+            </div>
+        </div>
+    </div>
 </div>
