@@ -10,11 +10,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,PreLoaderComponent,InputTextModule,FormsModule,FloatLabelModule,ButtonModule,CheckboxModule,CommonModule],
+  imports: [ReactiveFormsModule,PreLoaderComponent,
+    PasswordModule,
+    InputTextModule,FormsModule,
+    FloatLabelModule,ButtonModule,
+   CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   encapsulation:ViewEncapsulation.None
@@ -22,7 +27,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
 isLoading:boolean=false;
 
-passType="password";
+
 
 private subscriptions:Subscription=new Subscription();
 public userForm!:FormGroup
@@ -50,7 +55,8 @@ public onSubmit(){
       this.loginService.setToken(this.loginToken);
 this.route.navigateByUrl("dashboard")
     },
-    error:(err)=>{console.log(err),this.isLoading=false},
+    error:(err)=>{console.log(err),
+      setTimeout(()=>this.isLoading=false,3000)},
     complete:()=>{this.isLoading=false}
   })
   this.subscriptions.add(logSub);
@@ -63,9 +69,7 @@ ngOnInit(){
  ngOnDestroy(){
   this.subscriptions.unsubscribe()
 }
-onTogglePassword(){
-this.passType=this.passType=="password"?"text":"password";
-}
+
 
 
 }
