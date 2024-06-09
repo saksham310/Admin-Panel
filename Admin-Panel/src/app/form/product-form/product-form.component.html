@@ -1,13 +1,40 @@
-<div>
+<div class="card flex justify-content-center">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <label for="">Name</label>
-        <input type="text" formControlName="name">
-        <label for="">Category</label>
-        <input type="text" formControlName="category">
-        <label for="">Price</label>
-        <input type="text" formControlName="price">
-        <label for="">Stock</label>
-        <input type="text" formControlName="status">
-        <button>Submit</button>
+        <p-card header="Product Form" subheader="Card Subheader" [style]="{ width: '500px' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="../../../assets/images/product.svg" />
+            </ng-template>
+            <div class="field-container">
+                <p-inputGroup>
+                    <label for="username">Product Name</label>
+                    <input id="username" type="text" pInputText formControlName="name" />
+
+                </p-inputGroup>
+                <p-inputGroup>
+                    <label for="username">Category Name</label>
+                    <input id="username" type="text" pInputText formControlName="category" />
+
+                </p-inputGroup>
+                <p-inputGroup>
+                    <label for="username">Price</label>
+                    <input id="username" type="text" pInputText formControlName="price" />
+
+                </p-inputGroup>
+                <div class="choices">
+                    <label for="username">Stock</label>
+                    <p-dropdown formControlName="status" [options]="options" placeholder="Select Availability" />
+                    <!-- <input id="username" type="text" pInputText formControlName="status" /> -->
+
+                </div>
+                <!-- <button>Submit</button> -->
+
+            </div>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-6 mt-1 cta">
+                    <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
+                    <p-button label="Save" type="submit" class="w-full" styleClass="w-full" />
+                </div>
+            </ng-template>
+        </p-card>
     </form>
 </div>

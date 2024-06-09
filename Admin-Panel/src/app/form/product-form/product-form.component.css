@@ -1,0 +1,23 @@
+.cta {
+  display: flex;
+  justify-content: space-around;
+}
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+}
+p-inputgroup .p-inputgroup {
+  display: flex;
+  flex-direction: column;
+}
+p-inputgroup .p-inputgroup input {
+  width: 100%;
+}
+.choices {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 7px;
+}
