@@ -7,45 +7,31 @@
                     <div class="input-box">
                         <label for="fName">First Name <span class="required">*</span></label>
                         <input type="text" placeholder="First name" id="fName" formControlName="fName"
-                            [class.error]="form.fName.invalid && form.fName.touched">
-                        <small class="required" *ngIf="form.fName.errors?.['required']&& form.fName.touched">This is a
-                            required field</small>
-                        <small class="required" *ngIf="form.fName.errors?.['pattern']">Name cannot contain
-                            number</small>
+                            [class.error]="showValidate('fName')">
+                        <small class="required" *ngIf="showValidate('fName')">{{showValidate('fName')}}</small>
 
                     </div>
 
                     <div class="input-box">
                         <label for="lName">Last Name<span class="required">*</span></label>
                         <input type="text" placeholder="Last name" id="lName" formControlName="lName"
-                            [class.error]="form.lName.invalid && form.lName.touched">
-                        <small class="required" *ngIf="form.lName.errors?.['required']&& form.lName.touched">This field
-                            is
-                            required</small>
-                        <small class="required" *ngIf="form.lName.errors?.['pattern']">Name cannot contain
-                            number</small>
+                            [class.error]="showValidate('lName')">
+                        <small class="required" *ngIf="showValidate('lName')">{{showValidate('lName')}}</small>
                     </div>
                 </div>
 
                 <div class="input-box">
                     <label for="email">Email<span class="required">*</span></label>
                     <input type="email" placeholder="Email" id="email" formControlName="email"
-                        [class.error]="form.email.invalid && form.email.touched">
-                    <small class="required" *ngIf="form.email.errors?.['required']&& form.email.touched">This field is
-                        required</small>
-                    <small class="required" *ngIf="form.email.errors?.['email']">Please enter a valid
-                        mail (Eg: example&#64;gmail.com)</small>
+                        [class.error]="showValidate('email')">
+                    <small class="required" *ngIf="showValidate('email')">{{showValidate('email')}}</small>
                 </div>
                 <div class="group">
                     <div class="input-box">
                         <label for="phone">Phone<span class="required">*</span></label>
                         <input type="tel" placeholder="Phone number" id="phone" formControlName="phone"
-                            [class.error]="form.phone.invalid && form.phone.touched">
-                        <small class="required" *ngIf="form.phone.errors?.['required'] && form.phone.touched">This field
-                            is
-                            required</small>
-                        <small class="required" *ngIf="form.phone.errors?.['pattern']">Phone must be of 10 digits<br>
-                            (Eg:9XXXXXXXXX)</small>
+                            [class.error]="showValidate('phone')">
+                        <small class="required" *ngIf="showValidate('phone')">{{showValidate('phone')}}</small>
                     </div>
                     <div class="input-box">
                         <label for="role">Role<span class="required">*</span></label>
@@ -64,11 +50,9 @@
                 <div class="group">
                     <div class="input-box">
                         <label for="newPass">Create Password<span class="required">*</span></label>
-                        <input type="password" placeholder="New password" id="newPass" formControlName="password">
-                        <small class="required" *ngIf="form.password.errors?.['pattern']">Password must include:<br> 1
-                            digit<br> 1
-                            lowercase<br> 1 uppercase <br> 1 special character.
-                        </small>
+                        <input type="password" placeholder="New password" id="newPass" formControlName="password"
+                            [class.error]="showValidate('password')">
+                        <small class="required" *ngIf="showValidate('password')">{{showValidate('password')}}</small>
                     </div>
                     <div class="input-box">
                         <label for="cPass">Confirm Password<span class="required">*</span></label>

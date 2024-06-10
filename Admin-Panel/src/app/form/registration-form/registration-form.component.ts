@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordPattern, phonePattern,namePattern} from '../../validators/form.validators';
 import { MatchPassword } from '../../validators/form.validators';
 import { CommonModule } from '@angular/common';
+import {ValidateMessage} from '../../validators/form.validators';
 
 @Component({
   selector: 'app-registration-form',
@@ -37,6 +38,13 @@ public options=['Student','Admin']
   );
   get form(){
     return this.registrationForm.controls;
+  }
+
+showValidate(name:string){
+    return ValidateMessage(this.registrationForm,name)
+  }
+  ngOnInit(){
+      
   }
 }
 

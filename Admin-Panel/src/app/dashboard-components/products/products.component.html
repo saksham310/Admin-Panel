@@ -1,8 +1,9 @@
 @if(isLoading){
 <app-pre-loader></app-pre-loader>}
 <div class="card">
-    <p-table #dt1 [value]="products" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
-        [globalFilterFields]="['Name', 'Category', 'Price', 'Status']">
+    <button (click)="show()">Add </button>
+    <p-table #dt1 [value]="products" dataKey="id" [rows]="5" [rowsPerPageOptions]="[5,10, 25, 50]" [paginator]="true"
+        [globalFilterFields]="['Name', 'Category', 'Price', 'In Stock']">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:15rem">
@@ -47,7 +48,7 @@
 
                 <th style="min-width:10rem">
                     <div class="flex align-items-center">
-                        Status
+                        In Stock
                         <p-columnFilter field="status" matchMode="equals" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                 <p-dropdown (onChange)="filter($event.value)" placeholder="Any">
@@ -72,10 +73,11 @@
                     <span class="ml-1 vertical-align-middle">{{ product.category }}</span>
                 </td>
                 <td>
-                    {{ product.balance | currency: 'USD':'symbol' }}
+                    {{ product.price | currency: 'USD':'symbol' }}
                 </td>
                 <td>
-                    <p-tag [value]="product.status" />
+                    <p-tag [icon]="product.status? 'pi pi-check':'pi pi-times'"
+                        [severity]="product.status? 'success' : 'danger'" [value]="product.status" />
                 </td>
             </tr>
         </ng-template>
